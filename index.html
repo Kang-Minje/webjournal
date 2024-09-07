@@ -2,24 +2,105 @@
 <html lang="">
 
 <head>
-	<meta charset="utf-8">
-	<title>web journal</title>
-	<meta name="author" content="Your Name">
-	<meta name="description" content="Example description">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="icon" type="image/x-icon" href=""/>
+    <meta charset="utf-8">
+    <title>web journal</title>
+    <meta name="author" content="Your Name">
+    <meta name="description" content="Example description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/x-icon" href="" />
 </head>
 
 <body>
-	<header>
-	    <p class="header">web<br>journal<br>by<br>kangminje</p>
-	</header>
-<div class="header-border"></div>
-	<main></main>
-	<footer></footer>
-	<script type="text/javascript" src=""></script>
+    <header>
+        <p class="header">Notes</p>
+    </header>
+    <main>
+        <div class="intro">
+            <div class="time">
+                <p>
+                    by Time
+                </p>
+                <ul id="menu">
+                    <li><a href="#" onclick="showContent('24 Jul')">24 Jul</a></li>
+                    <li><a href="#" onclick="showContent('24 Aug')">24 Aug</a></li>
+                    <li><a href="#" onclick="showContent('24 Sep')">24 Sep</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>
+                    by Work
+                </p>
+                <ul id="menu">
+                    <li>&lceil;<a href="#" onclick="showContent('Portraits')">Portraits</a>&rfloor;</li>
+                    <li>&lceil;<a href="#" onclick="showContent('Superposition')">Superposition</a>&rfloor;</li>
+                    <li>&lceil;<a href="#" onclick="showContent('Panbaki')">Panbaki</a>&rfloor;</li>
+                    <li>&lceil;<a href="#" onclick="showContent('Image Hanabi')">Image Hanabi</a>&rfloor;</li>
+                    <li>&lceil;<a href="#" onclick="showContent('Running Through')">Running Through</a>&rfloor;</li>
+                    <li>&lceil;<a href="#" onclick="showContent('Breathing')">Breathing</a>&rfloor;</li>
+                    <li>&lceil;<a href="#" onclick="showContent('Faint Belief')">Faint Belief</a>&rfloor;</li>
+                </ul>
+            </div>
+            <div>
+                <p>
+                    Inspirations
+                </p>
+            </div>
+            <div>
+                <p class="kr" style="margin-right: 0;">
+                    작업은<br>
+                    보통의 세계를 나의 세계로 녹여내기 위한 함수다.<br>
+                    그 것은 여러 감각에 기반하며 나의 것은 매끈한 함수<br>
+                    속에서 뭉치고 포개져 재건된다.<br><br>
+                    강 민제<br><br>
+                    서울, 안성, 원주<br>
+                    <a href="mailto:info@kangminje.com?subject=[kangminjedotcom]" class="email-link">info@kangminje.com</a><br><br>
+                    <a href="http://kangminje.com">Website<br></a>
+                    <a href="https://instagram.com/kangminjedotcom">Instagram<br></a>
+                    <a href="https://www.youtube.com/@kangminjedotfilm">Youtube<br></a>
+                </p>
+            </div>
+        </div>
+        <div id="content">
+            <h2>Welcome</h2>
+            <p><br>Click on any item from the list to see the content here.</p>
+        </div>
+    </main>
+
+    <script>
+        function showContent(content) {
+            const contentDiv = document.getElementById('content');
+            const menu = document.getElementById('menu');
+
+            // Define content for each link
+            const contentMap = {
+                '24 Jul': '<h2>24 Jul</h2><p>Content for July 2024 goes here.</p>',
+                '24 Aug': '<h2>24 Aug</h2><p>Content for August 2024 goes here.</p>',
+                '24 Sep': '<h2>24 Sep</h2><p>Content for September 2024 goes here.</p>',
+                'Portraits': '<h2>Portraits</h2><p>Portraits content goes here.</p>',
+                'Superposition': '<h2>Superposition</h2><p>Superposition content goes here.</p>',
+                'Panbaki': '<h2>Panbaki</h2><p>Panbaki content goes here.</p>',
+                'Image Hanabi': '<h2>Image Hanabi</h2><p>Image Hanabi content goes here.</p>',
+                'Running Through': '<h2>Running Through</h2><p>Running Through content goes here.</p>',
+                'Breathing': '<h2>Breathing</h2><p>Breathing content goes here.</p>',
+                'Faint Belief': '<h2>Faint Belief</h2><p>Faint Belief content goes here.</p>'
+            };
+
+            // Update the content div with the corresponding content
+            contentDiv.innerHTML = contentMap[content];
+
+            // Display the content div and animate
+            contentDiv.classList.add('show');
+
+            // Shrink the menu to the left
+            menu.classList.add('shrink');
+        }
+
+    </script>
+
+    <footer></footer>
+    <script type="text/javascript" src=""></script>
 </body>
 
 </html>
