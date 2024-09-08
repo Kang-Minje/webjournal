@@ -23,9 +23,9 @@
                     by Time
                 </p>
                 <ul id="menu">
-                    <li><a href="#" onclick="showContent('24 Jul')">24 Jul</a></li>
-                    <li><a href="#" onclick="showContent('24 Aug')">24 Aug</a></li>
-                    <li><a href="#" onclick="showContent('24 Sep')">24 Sep</a></li>
+                    <li><a href="#" onclick="showContent('2024 Jul')">2024 Jul</a></li>
+                    <li><a href="#" onclick="showContent('2024 Aug')">2024 Aug</a></li>
+                    <li><a href="#" onclick="showContent('2024 Sep')">2024 Sep</a></li>
                 </ul>
             </div>
             <div>
@@ -46,6 +46,11 @@
                 <p>
                     Inspirations
                 </p>
+                <ul id="menu">
+                    <li><a href="#" onclick="showContent('Combined Art')">Combined Art</a></li>
+                    <li><a href="#" onclick="showContent('Fashion Photography')">Fashion Photography</a></li>
+                    <li><a href="#" onclick="showContent('Film')">Film</a></li>
+                </ul>
             </div>
             <div>
                 <p class="kr" style="margin-right: 0;">
@@ -69,35 +74,42 @@
     </main>
 
     <script>
-        function showContent(content) {
+        // contentData를 정의하고 JSON 데이터를 불러와 여기에 저장할 예정
+        let contentData = {};
+
+        // JSON 파일을 불러오는 함수
+        function loadContentData() {
+            fetch('JSON/contentData.json') // JSON 파일 경로를 설정
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // JSON 데이터를 파싱
+                })
+                .then(data => {
+                    contentData = data; // JSON 데이터를 contentData에 저장
+                })
+                .catch(error => {
+                    console.error('Error fetching content data:', error);
+                });
+        }
+
+        // 페이지가 로드될 때 JSON 파일을 불러옴
+        window.onload = loadContentData;
+
+        // 특정 항목을 클릭했을 때 콘텐츠를 보여주는 함수
+        function showContent(contentKey) {
             const contentDiv = document.getElementById('content');
-            const menu = document.getElementById('menu');
 
-            // Define content for each link
-            const contentMap = {
-                '24 Jul': '<p>24 Jul</p><p><br>인간생활 속 가장 가까운 물체인 의복과 인간의 관계.<br>다른 물체가 옷으로 존재할 수는 없을까</p><p><br>이미지에서 추출한 무언가로 새 이미지를 만드는 것.<br>새 언어를 만든다.               이미지하나비처럼, 위성사진에서 글자를 만드는 것처럼 </p>',
-                '24 Aug': '<p>24 Aug</p><p>Content for August 2024 goes here.</p>',
-                '24 Sep': '<p>24 Sep</p><p>Content for September 2024 goes here.</p>',
-                'Portraits': '<p>Portraits</p><p>Portraits content goes here.</p>',
-                'Superposition': '<p>Superposition</p><p>Superposition content goes here.</p>',
-                'Panbaki': '<p>Panbaki</p><p>Panbaki content goes here.</p>',
-                'Image Hanabi': '<p>Image Hanabi</p><p>Image Hanabi content goes here.</p>',
-                'Running Through': '<p>Running Through</p><p>Running Through content goes here.</p>',
-                'Breathing': '<p>Breathing</p><p>Breathing content goes here.</p>',
-                'Faint Belief': '<p>Faint Belief</p><p>Faint Belief content goes here.</p>'
-            };
+            // contentData 객체에서 contentKey에 해당하는 데이터를 찾아 표시
+            contentDiv.innerHTML = contentData[contentKey] || '<p>Content not found</p>';
 
-            // Update the content div with the corresponding content
-            contentDiv.innerHTML = contentMap[content];
-
-            // Display the content div and animate
+            // 콘텐츠가 표시되도록 클래스 추가 (CSS에서 show 클래스 정의 필요)
             contentDiv.classList.add('show');
-
-            // Shrink the menu to the left
-            menu.classList.add('shrink');
         }
 
     </script>
+    
 
     <footer></footer>
     <script type="text/javascript" src=""></script>
